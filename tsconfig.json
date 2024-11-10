@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "allowUnreachableCode": false,
+    "target": "es2022",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "declaration": true,
+    "strict": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "incremental": true,
+    "declarationMap": true,
+    "moduleResolution": "node",
+    "composite": true,
+    "jsx": "react-jsx",
+    "noUncheckedIndexedAccess": true,
+    "module": "commonjs",
+    "outDir": "./dist",
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "strictPropertyInitialization": false,
+    "paths": {
+      "@cedelabs-private/sdk": ["../../core/sdk"]
+    }
+  },
+  "include": ["src/**/*", "./svg.d.ts", "prisma/**/*", "src/**/*.json", "lib/**/*"],
+  "exclude": ["**/.*/", "**/dist", "**/node_modules"]
+}

@@ -1,0 +1,56 @@
+{
+  "name": "@cede/proxy",
+  "private": true,
+  "version": "0.4.4",
+  "description": "CORS Anywhere is a reverse proxy which adds CORS headers to the proxied request. Request URL is taken from the path",
+  "license": "MIT",
+  "keywords": [
+    "cors",
+    "cross-domain",
+    "http-proxy",
+    "proxy",
+    "heroku"
+  ],
+  "main": "dist/index.js",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cache-manager": "^5.6.1",
+    "cache-manager-redis-yet": "^5.1.2",
+    "ccxt": "^4.4.28",
+    "dotenv": "^16.4.5",
+    "dotenv-webpack": "^8.1.0",
+    "express": "^4.21.1",
+    "http-proxy": "1.11.1",
+    "http-proxy-agent": "^7.0.2",
+    "https-proxy-agent": "^7.0.5",
+    "proxy-from-env": "0.0.1",
+    "socks-proxy-agent": "^8.0.4",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@types/proxy-from-env": "^1.0.4",
+    "copy-webpack-plugin": "^9.0.1",
+    "coveralls": "^2.11.6",
+    "eslint": "^2.2.0",
+    "istanbul": "^0.4.2",
+    "lolex": "^1.5.0",
+    "mocha": "^3.4.2",
+    "nock": "^8.2.1",
+    "nodemon-webpack-plugin": "^4.8.2",
+    "supertest": "^2.0.1",
+    "svg-url-loader": "^8.0.0",
+    "ts-loader": "^9.5.1",
+    "webpack": "^5.92.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "webpack --watch",
+    "build": "webpack",
+    "lint": "eslint ."
+  },
+  "volta": {
+    "yarn": "1.22.19",
+    "node": "18.18.0"
+  }
+}
