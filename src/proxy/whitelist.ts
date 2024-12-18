@@ -30,6 +30,10 @@ function whiteListExchangeURLs(api: Record<string, any>, prefix, func) {
   }
 }
 
+// testing
+whitelist["POST"] = [];
+whitelist["POST"].push(/^http:\/\/localhost:3000\/dev\/postEndpoint/);
+
 // Add whitelisted URLS for Bitget
 {
   const bitget = new ccxt.bitget();

@@ -4,6 +4,16 @@ import "./core/env";
 import { corsAnywhereMiddleware } from "./proxy/cors-anywhere";
 import rateLimit from "./proxy/rate-limit";
 
+setInterval(() => {
+  const memoryUsage = process.memoryUsage();
+  console.log(`
+    RSS: ${(memoryUsage.rss / 1024 / 1024).toFixed(2)} MB,
+    Heap Total: ${(memoryUsage.heapTotal / 1024 / 1024).toFixed(2)} MB,
+    Heap Used: ${(memoryUsage.heapUsed / 1024 / 1024).toFixed(2)} MB,
+    External: ${(memoryUsage.external / 1024 / 1024).toFixed(2)} MB
+  `);
+}, 1000); // Log every 1 second
+
 async function main() {
   // Listen on a specific host via the HOST environment variable
   const host: string = process.env.HOST || "0.0.0.0";
@@ -49,10 +59,7 @@ async function main() {
     }),
   );
 
-
-
   app.use(bodyParser.json());
-
 
   app.listen(port, host, () => {
     // eslint-disable-next-line no-console

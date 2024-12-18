@@ -181,14 +181,15 @@ async function proxyRequest(req, res, proxy) {
     req.url = location.href;
   }
 
-  proxy.on("error", function (error, req, res) {
-    // eslint-disable-next-line no-console
-    console.error("Proxy error:", req.url, error);
-    if (!res.headersSent) {
-      res.writeHead(500);
-      res.end("Internal server error");
-    }
-  });
+  // INSTRUCTION comment this on and off to show the infinite memory increase
+  // proxy.on("error", function (error, req, res) {
+  //   // eslint-disable-next-line no-console
+  //   console.error("Proxy error:", req.url, error);
+  //   if (!res.headersSent) {
+  //     res.writeHead(500);
+  //     res.end("Internal server error");
+  //   }
+  // });
 
   // Start proxying the request
   try {
