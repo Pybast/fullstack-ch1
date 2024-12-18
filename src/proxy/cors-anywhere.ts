@@ -181,16 +181,6 @@ async function proxyRequest(req, res, proxy) {
     req.url = location.href;
   }
 
-  // INSTRUCTION comment this on and off to show the infinite memory increase
-  // proxy.on("error", function (error, req, res) {
-  //   // eslint-disable-next-line no-console
-  //   console.error("Proxy error:", req.url, error);
-  //   if (!res.headersSent) {
-  //     res.writeHead(500);
-  //     res.end("Internal server error");
-  //   }
-  // });
-
   // Start proxying the request
   try {
     proxy.web(req, res, proxyOptions);
@@ -513,6 +503,14 @@ function getHandler(options, proxy) {
     });
   };
 }
+function handleProxyError(error, req, res) {
+  // eslint-disable-next-line no-console
+  console.error("Proxy error:", req.url, error);
+  if (!res.headersSent) {
+    res.writeHead(500);
+    res.end("Internal server error");
+  }
+}
 
 export function corsAnywhereMiddleware(options) {  
   options = options || {};
@@ -525,6 +523,8 @@ export function corsAnywhereMiddleware(options) {
   const requestHandler = getHandler(options, proxy);
 
   return function (req, res, next) {
+    proxy.on("error", handleProxyError);
+    
     // Pass control to the next middleware if it's a local route like /commit
     if (req.url.startsWith("/commit")) {
       next();
@@ -541,5 +541,7 @@ export function corsAnywhereMiddleware(options) {
         }
       }
     }
+    
+    proxy.removeListener("error", handleProxyError);
   };
 }
